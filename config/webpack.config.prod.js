@@ -40,7 +40,8 @@ const cssFilename = 'static/css/[name].[contenthash:8].css'
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
 // To have this structure working with relative paths, we have to use custom options.
-const extractTextPluginOptions = shouldUseRelativeAssetPaths ? // Making sure that the publicPath goes back to to build folder.
+const extractTextPluginOptions = shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
+  ?
   { publicPath: Array(cssFilename.split('/').length).join('../') } :
   {}
 
@@ -153,7 +154,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.less$/,
             loader: ExtractTextPlugin.extract(
                 Object.assign({
                     fallback: require.resolve('style-loader'),
